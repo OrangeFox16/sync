@@ -4,8 +4,8 @@
 # - Syncs the relevant twrp minimal manifest, and patches it for building OrangeFox
 # - Pulls in the OrangeFox recovery sources and vendor tree
 # - Author:  DarthJabba9
-# - Version: generic:021
-# - Date:    04 November 2025
+# - Version: generic:022
+# - Date:    06 November 2025
 #
 # 	* Changes for v007 (20220430)  - make it clear that fox_12.1 is not ready
 # 	* Changes for v008 (20220708)  - fox_12.1 is now ready
@@ -22,11 +22,12 @@
 # 	* Changes for v019 (20250514)  - Enter R11.3; add retry on 'git clone' failures
 # 	* Changes for v020 (20250702)  - patch system/vold/ for aidl weaver support (fox_14.1)
 # 	* Changes for v021 (20251104)  - patch .repo/manifests/remove-minimal.xml (fox_14.1); patch update_engine (fox_12.1)
+# 	* Changes for v022 (20251106)  - add se_omapi to fox_14.1 branch (*EXPERIMENTAL*)
 #
 # ***************************************************************************************
 
 # the version number of this script
-SCRIPT_VERSION="20251104";
+SCRIPT_VERSION="20251106";
 
 # the base version of the current OrangeFox
 FOX_BASE_VERSION="R11.3";
@@ -260,6 +261,28 @@ clone_common() {
    fi
 }
 
+# get se_omapi (14.1 only)
+clone_se_omapi() {
+local dest="external/se_omapi";
+local URL="";
+   if [ "$USE_SSH" = "0" ]; then
+      URL="https://gitlab.com/OrangeFox/external/se_omapi.git";
+   else
+      URL="git@gitlab.com:OrangeFox/external/se_omapi.git";
+   fi
+
+   if [ "$BASE_VER" = "14" -o "$FOX_BRANCH" = "fox_14.1" ]; then
+	cd $MANIFEST_DIR/;
+
+	# cleanup if we already have se_omapi there
+	[ -d "$dest" ] && rm -rf "$dest";
+
+	echo "-- Cloning se_omapi ...";
+	git clone $URL -b $FOX_BRANCH "$dest";
+	[ "$?" = "0" ] && echo "-- se_omapi has been cloned successfully" || echo "-- Error! Clone $URL manually to $dest";
+   fi
+}
+
 # get the OrangeFox recovery sources
 clone_fox_recovery() {
 local URL="";
@@ -409,6 +432,8 @@ WorkNow() {
     patch_minimal_manifest;
 
     clone_common;
+
+    clone_se_omapi;
 
     clone_fox_recovery;
 
