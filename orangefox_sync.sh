@@ -24,11 +24,12 @@
 # 	* Changes for v021 (20251104)  - patch .repo/manifests/remove-minimal.xml (fox_14.1); patch update_engine (fox_12.1)
 # 	* Changes for v022 (20251106)  - add se_omapi to fox_14.1 branch (*EXPERIMENTAL*)
 # 	* Changes for v023 (20251109)  - patch .repo/manifests/remove-minimal.xml (fox_14.1) to restore gflags (needed for snapuserd)
+# 	* Changes for v023 (20260410)  - add fox_16.0 branch (this branch is *SUPER EXPERIMENTAL*)
 #
 # ***************************************************************************************
 
 # the version number of this script
-SCRIPT_VERSION="20251109";
+SCRIPT_VERSION="20260410";
 
 # the base version of the current OrangeFox
 FOX_BASE_VERSION="R11.3";
