@@ -50,7 +50,7 @@ do_fox_160() {
 	FOX_BRANCH="fox_16.0";
 	FOX_DEF_BRANCH="fox_16.0";
 	TWRP_BRANCH="twrp-16";
-	DEVICE_BRANCH="android-16";
+	DEVICE_BRANCH="android-14";
 	test_build_device="infiniti"; # the device whose tree we can clone for compiling a test build
 	[ -z "$MANIFEST_DIR" ] && MANIFEST_DIR="$BASE_DIR/$FOX_DEF_BRANCH";
 }
