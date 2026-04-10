@@ -191,10 +191,10 @@ index 688ca8c..cabaff7 100644
  
  APICHECK_COMMAND := $(JAVA) -Xmx4g -jar $(APICHECK)
  
-diff --git a/envsetup.sh b/envsetup.sh
+diff --git a/make/envsetup.sh b/make/envsetup.sh
 index 069c02b..3d718f2 100644
---- a/envsetup.sh
-+++ b/envsetup.sh
+--- a/make/envsetup.sh
++++ b/make/envsetup.sh
 @@ -318,6 +318,14 @@ function printconfig()
          return
      fi
