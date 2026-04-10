@@ -3,9 +3,9 @@
 # - Script to set up things for building OrangeFox with a minimal build system
 # - Syncs the relevant twrp minimal manifest, and patches it for building OrangeFox
 # - Pulls in the OrangeFox recovery sources and vendor tree
-# - Author:  DarthJabba9
-# - Version: generic:023
-# - Date:    09 November 2025
+# - Author:  koaaN/DarthJabba9
+# - Version: generic:024
+# - Date:    10 April 2026
 #
 # 	* Changes for v007 (20220430)  - make it clear that fox_12.1 is not ready
 # 	* Changes for v008 (20220708)  - fox_12.1 is now ready
@@ -24,7 +24,7 @@
 # 	* Changes for v021 (20251104)  - patch .repo/manifests/remove-minimal.xml (fox_14.1); patch update_engine (fox_12.1)
 # 	* Changes for v022 (20251106)  - add se_omapi to fox_14.1 branch (*EXPERIMENTAL*)
 # 	* Changes for v023 (20251109)  - patch .repo/manifests/remove-minimal.xml (fox_14.1) to restore gflags (needed for snapuserd)
-# 	* Changes for v023 (20260410)  - add fox_16.0 branch (this branch is *SUPER EXPERIMENTAL*)
+# 	* Changes for v024 (20260410)  - add fox_16.0 branch (this branch is *SUPER EXPERIMENTAL*)
 #
 # ***************************************************************************************
 
