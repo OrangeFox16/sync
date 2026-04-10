@@ -43,6 +43,17 @@ MANIFEST_DIR="";
 MIN_MANIFEST="https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git";
 
 # functions to set up things for each supported manifest branch
+do_fox_160() {
+	MIN_MANIFEST="https://github.com/OrangeFox16/platform_manifest_twrp_aosp.git";
+	BASE_VER=16;
+	FOX_BRANCH="fox_16.0";
+	FOX_DEF_BRANCH="fox_16.0";
+	TWRP_BRANCH="twrp-16";
+	DEVICE_BRANCH="android-16";
+	test_build_device="vayu"; # the device whose tree we can clone for compiling a test build
+	[ -z "$MANIFEST_DIR" ] && MANIFEST_DIR="$BASE_DIR/$FOX_DEF_BRANCH";
+}
+
 do_fox_141() {
 	MIN_MANIFEST="https://github.com/nebrassy/platform_manifest_twrp_aosp.git";
 	BASE_VER=14;
@@ -75,9 +86,12 @@ help_screen() {
   echo "    -p, -P, --path <absolute_path>	sync the minimal manifest into the directory '<absolute_path>'";
   echo "    -b, -B, --branch <branch>		get the minimal manifest for '<branch>'";
   echo "    	'<branch>' must be one of the following branches:";
+  echo "    		16.0 (note that this branch is *SUPER EXPERIMENTAL*)";
   echo "    		14.1 (note that this branch is *EXPERIMENTAL*)";
   echo "    		12.1";
   echo "Examples:";
+  echo "    $0 --branch 16.0 --path ~/OrangeFox_16.0";
+  echo "    $0 --branch 16.0 --path ~/OrangeFox/16.0 --debug";
   echo "    $0 --branch 14.1 --path ~/OrangeFox_14.1";
   echo "    $0 --branch 14.1 --path ~/OrangeFox/14.1 --debug";
   echo "    $0 --branch 12.1 --path ~/OrangeFox_12.1";
@@ -119,7 +133,12 @@ Process_CMD_Line() {
              # branch
                 -b | -B | --branch)
                 	shift;
-			if [ "$1" = "14.1" ]; then
+			if [ "$1" = "16.0" ]; then
+				echo "**************";
+				echo "*** WARNING***: the fox_16.0 branch is *SUPER EXPERIMENTAL*! Also, syncing will take a *VERY* long time";
+				echo "**************";
+				do_fox_160;
+			elif [ "$1" = "14.1" ]; then
 				echo "**************";
 				echo "*** WARNING***: the fox_14.1 branch is *EXPERIMENTAL*! Also, syncing will take a *VERY* long time";
 				echo "**************";
@@ -231,6 +250,8 @@ patch_minimal_manifest() {
       cd $MANIFEST_REPO_MANIFESTS_DIR;
       patch -p1 < $PATCH_REMOVE_MINIMAL;
       [ "$?" = "0" ] && echo "-- The $TWRP_BRANCH .repo/manifests has been patched successfully" || echo "-- Error! Failed to patch the $TWRP_BRANCH .repo/manifests !";
+   elif [ "$BASE_VER" = "16" -o "$FOX_BRANCH" = "fox_16.0" ]; then
+   :
    else
       echo "-- Patching the $TWRP_BRANCH system/update_engine for building OrangeFox for native $DEVICE_BRANCH devices ...";
       cd $MANIFEST_UPDATE_ENGINE_DIR;
@@ -288,11 +309,17 @@ local URL="";
 clone_fox_recovery() {
 local URL="";
 local BRANCH=$FOX_BRANCH;
+   if [ "$BASE_VER" = "16" ] || [ "$FOX_BRANCH" = "fox_16.0" ]; then
    if [ "$USE_SSH" = "0" ]; then
-      URL="https://gitlab.com/OrangeFox/bootable/Recovery.git";
+      URL="https://github.com/OrangeFox16/android_bootable_recovery.git"
    else
-      URL="git@gitlab.com:OrangeFox/bootable/Recovery.git";
+      URL="git@github.com/OrangeFox16/android_bootable_recovery.git"
    fi
+elif [ "$USE_SSH" = "0" ]; then
+   URL="https://gitlab.com/OrangeFox/bootable/Recovery.git"
+else
+   URL="git@gitlab.com:OrangeFox/bootable/Recovery.git"
+fi
 
    mkdir -p $MANIFEST_DIR/bootable;
    [ ! -d $MANIFEST_DIR/bootable ] && {
@@ -330,10 +357,16 @@ local BRANCH=$FOX_BRANCH;
 clone_fox_vendor() {
 local URL="";
 local BRANCH=$FOX_BRANCH;
+   if [ "$BASE_VER" = "16" ] || [ "$FOX_BRANCH" = "fox_16.0" ]; then
    if [ "$USE_SSH" = "0" ]; then
-      URL="https://gitlab.com/OrangeFox/vendor/recovery.git";
+      URL="https://github.com/OrangeFox16/android_vendor_recovery.git"
    else
-      URL="git@gitlab.com:OrangeFox/vendor/recovery.git";
+      URL="git@github.com/OrangeFox16/android_vendor_recovery.git"
+   fi
+   elif [ "$USE_SSH" = "0" ]; then
+      URL="https://gitlab.com/OrangeFox/vendor/recovery.git"
+   else
+      URL="git@gitlab.com:OrangeFox/vendor/recovery.git"
    fi
 
    echo "-- Preparing for cloning the OrangeFox vendor tree ...";
