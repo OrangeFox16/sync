@@ -4,8 +4,8 @@
 ------------------------------------
 
 ### 1. Fetch these sync tools ###
-	mkdir -p ~/android/OrangeFox_14
-	cd ~/android/OrangeFox_14
+	mkdir -p ~/android/OrangeFox_16
+	cd ~/android/OrangeFox_16
 	git clone https://github.com/OrangeFox16/sync
 
 ### 2. Do the syncing (this can take up to 1-2 hours, and can use up to 40GB-80GB of disk space) - below is an example, for 12.1 (amend as required for other branches) ##
