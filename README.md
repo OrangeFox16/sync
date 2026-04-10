@@ -4,13 +4,13 @@
 ------------------------------------
 
 ### 1. Fetch these sync tools ###
-	mkdir ~/OrangeFox_16
-	cd ~/OrangeFox_16
-	git clone https://github.com/OrangeFox16/sync # (or, using ssh, "git clone git@github.com:OrangeFox16/sync.git")
+	mkdir -p ~/android/OrangeFox_14
+	cd ~/android/OrangeFox_14
+	git clone https://github.com/OrangeFox16/sync
 
 ### 2. Do the syncing (this can take up to 1-2 hours, and can use up to 40GB-80GB of disk space) - below is an example, for 12.1 (amend as required for other branches) ##
-	cd ~/OrangeFox_16/sync/
-	./orangefox_sync.sh --branch 16.0 --path ~/fox_16.0
+	cd ~/OrangeFox_16/sync
+	./orangefox_sync.sh --branch 16.0 --path ~/android/fox_16.0
 Notes:
 - You *MUST* supply an *ABSOLUTE* path name for the "--path" switch
 - If the sync process gets stuck, you might need to terminate it with Ctrl-C and then run the script again
