@@ -9,7 +9,7 @@
 	git clone https://github.com/OrangeFox16/sync
 
 ### 2. Do the syncing (this can take up to 1-2 hours, and can use up to 40GB-80GB of disk space) - below is an example, for 12.1 (amend as required for other branches) ##
-	cd ~/OrangeFox_16/sync
+	cd ~/android/OrangeFox_16/sync
 	./orangefox_sync.sh --branch 16.0 --path ~/android/fox_16.0
 Notes:
 - You *MUST* supply an *ABSOLUTE* path name for the "--path" switch
