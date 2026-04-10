@@ -4,13 +4,13 @@
 ------------------------------------
 
 ### 1. Fetch these sync tools ###
-	mkdir ~/OrangeFox_sync
-	cd ~/OrangeFox_sync
-	git clone https://gitlab.com/OrangeFox/sync.git # (or, using ssh, "git clone git@gitlab.com:OrangeFox/sync.git")
+	mkdir ~/OrangeFox16_sync
+	cd ~/OrangeFox16_sync
+	git clone https://github.com/OrangeFox16/sync # (or, using ssh, "git clone git@github.com:OrangeFox16/sync.git")
 
 ### 2. Do the syncing (this can take up to 1-2 hours, and can use up to 40GB-80GB of disk space) - below is an example, for 12.1 (amend as required for other branches) ##
-	cd ~/OrangeFox_sync/sync/
-	./orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
+	cd ~/OrangeFox16_sync/sync/
+	./orangefox_sync.sh --branch 16.0 --path ~/fox_16.0
 Notes:
 - You *MUST* supply an *ABSOLUTE* path name for the "--path" switch
 - If the sync process gets stuck, you might need to terminate it with Ctrl-C and then run the script again
@@ -19,36 +19,35 @@ Notes:
 
 ## These manifest branches are supported by the orangefox_sync.sh script: ##
 ----------------------------------
-	14.1
-	12.1
+	16.0
 
 ## To update the manifest, and the recovery sources, and the vendor trees (given the example of the 12.1 branch above), follow these steps: ##
 ----------------------------------
-	cd ~/fox_12.1/
+	cd ~/fox_16.0/
 	repo sync # (ignore all errors and suggestions relating to "android_bootable_recovery")
-	cd ~/fox_12.1/bootable/recovery/
+	cd ~/fox_16.0/bootable/recovery/
 	git pull
-	cd ~/fox_12.1/vendor/recovery/
+	cd ~/fox_16.0/vendor/recovery/
 	git pull
 
 ## To update only the recovery sources (given the example of the 12.1 branch above), follow these steps: ##
 ----------------------------------
-	cd ~/fox_12.1/bootable/recovery/
+	cd ~/fox_16.0/bootable/recovery/
 	git pull
 
 ## To update only the vendor tree (given the example of the 12.1 branch above) follow these steps: ##
 ----------------------------------
-	cd ~/fox_12.1/vendor/recovery/
+	cd ~/fox_16.0/vendor/recovery/
 	git pull
 
 ## To update only the manifest (given the example of the 12.1 branch above), follow these steps: ##
 ----------------------------------
-	cd ~/fox_12.1/
+	cd ~/fox_16.0/
 	repo sync # (ignore all errors and suggestions relating to "android_bootable_recovery")
 
 ## To see the syntax of the orangefox_sync.sh script, follow these steps: ##
 ----------------------------------
-	cd ~/OrangeFox_sync/sync/
+	cd ~/OrangeFox16_sync/sync/
 	./orangefox_sync.sh --help
 
 
