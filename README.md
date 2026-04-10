@@ -4,12 +4,12 @@
 ------------------------------------
 
 ### 1. Fetch these sync tools ###
-	mkdir ~/OrangeFox16_sync
-	cd ~/OrangeFox16_sync
+	mkdir ~/OrangeFox_16
+	cd ~/OrangeFox_16
 	git clone https://github.com/OrangeFox16/sync # (or, using ssh, "git clone git@github.com:OrangeFox16/sync.git")
 
 ### 2. Do the syncing (this can take up to 1-2 hours, and can use up to 40GB-80GB of disk space) - below is an example, for 12.1 (amend as required for other branches) ##
-	cd ~/OrangeFox16_sync/sync/
+	cd ~/OrangeFox_16/sync/
 	./orangefox_sync.sh --branch 16.0 --path ~/fox_16.0
 Notes:
 - You *MUST* supply an *ABSOLUTE* path name for the "--path" switch
@@ -47,7 +47,7 @@ Notes:
 
 ## To see the syntax of the orangefox_sync.sh script, follow these steps: ##
 ----------------------------------
-	cd ~/OrangeFox16_sync/sync/
+	cd ~/OrangeFox_16/sync/
 	./orangefox_sync.sh --help
 
 
